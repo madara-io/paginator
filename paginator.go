@@ -16,7 +16,7 @@ type Param struct {
 }
 
 // Paginator return
-type Paginator struct {go mod
+type Paginator struct {
 	TotalRecord int         `json:"total_record"`
 	TotalPage   int         `json:"total_page"`
 	Records     interface{} `json:"records"`
