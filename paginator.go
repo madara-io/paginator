@@ -3,7 +3,7 @@ package paginator
 import (
 	"math"
 
-	"gorm.io/gorm"
+	"github.com/jinzhu/gorm"
 )
 
 // Param parameter
@@ -16,8 +16,8 @@ type Param struct {
 }
 
 // Paginator return
-type Paginator struct {
-	TotalRecord int64       `json:"total_record"`
+type Paginator struct {go mod
+	TotalRecord int         `json:"total_record"`
 	TotalPage   int         `json:"total_page"`
 	Records     interface{} `json:"records"`
 	Offset      int         `json:"offset"`
@@ -48,7 +48,7 @@ func Paging(p *Param, result interface{}) *Paginator {
 
 	done := make(chan bool, 1)
 	var paginator Paginator
-	var count int64
+	var count int
 	var offset int
 
 	go countRecords(db, result, done, &count)
@@ -84,7 +84,7 @@ func Paging(p *Param, result interface{}) *Paginator {
 	return &paginator
 }
 
-func countRecords(db *gorm.DB, anyType interface{}, done chan bool, count *int64) {
+func countRecords(db *gorm.DB, anyType interface{}, done chan bool, count *int) {
 	db.Model(anyType).Count(count)
 	done <- true
 }
