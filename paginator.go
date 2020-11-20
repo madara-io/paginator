@@ -3,7 +3,7 @@ package paginator
 import (
 	"math"
 
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 // Param parameter
